@@ -16,7 +16,7 @@ agent any
     }
     stage('Buildind'){
       steps{
-        sh "docker ps"
+        sh "sudo docker ps"
       }
     }
   }
