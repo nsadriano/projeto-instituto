@@ -16,7 +16,9 @@ agent any
     }
     stage('Buildind'){
       steps{
-        sh "sudo docker ps"
+        script {
+          dockerImage = docker.build imagename:$BUILD_NUMBER
+        }
       }
     }
   }
