@@ -1,0 +1,64 @@
+---
+- name: Instalando Docker AWS EC2
+  hosts: docker-ec2
+  become: true
+  gather_facts: no
+  vars:
+    jenkins_port: 8080
+
+  tasks:
+    - name: Atualizando o sistema operacional
+      apt:
+        name: '*'
+        state: latest
+
+    - name: Instalando pacotes necessários
+      apt:
+        pkg: 
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        state: latest
+        update_cache: yes
+        
+    - name: Adicionando Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Adicionando Repositorio Docker
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Atualizando o apt e instalando o docker-ce
+      apt: 
+        pkg: 
+        - docker-ce
+        - python3-pip
+        update_cache: yes
+        state: latest
+    
+    - name: Instalando modulo docker python
+      pip:
+        name: docker
+
+    - name: Criando o container do jenkins
+      docker_container:
+        name: jenkins
+        image: jenkins/jenkins
+        state: started
+        recreate: yes
+        published_ports:
+          - 8080:8080
+          - 50000:50000
+        volumes:
+          - /home/ubuntu/jenkins:/var/jenkins_home
+
+    - name: Senha inicial de acesso ao jenkins
+      shell: cat /home/ubuntu/jenkins/secrets/initialAdminPassword
+      register: cat
+
+    - debug: var=cat.stdout_lines
+
