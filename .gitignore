@@ -1,2 +1,4 @@
 *.cer
 terraform/.terraform/*
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
