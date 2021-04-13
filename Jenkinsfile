@@ -1,10 +1,14 @@
-pipeline{
-  agent any
+pipeline {
+  environment {
+    imagename = "nsadriano/hello-app"
+    registryCredential = 'dockerhub-token'
+    dockerImage = ''
+  }
+
+agent any
   stages{
-    stage("Teste"){
-      steps{
-        echo "novo teste"
-      }
+    stage('Git Clone'){
+      git([url: 'https://github.com/nsadriano/projeto-instituto.git', branch: 'main', credentialsId: 'registryCredential'])
     }
   }
 }

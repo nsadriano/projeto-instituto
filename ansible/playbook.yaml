@@ -44,6 +44,12 @@
       pip:
         name: docker
 
+    - name: Adicionando usuario jenkins ao grupo Docker
+      user: 
+        name: jenkins
+        groups: docker
+        append: yes
+
     - name: Criando o container do jenkins
       docker_container:
         name: jenkins
