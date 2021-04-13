@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "nsadriano/hello-app"
-    registryCredential = 'dockerhub-credentials'
+    registryCredential = 'github-credentials'
     dockerImage = ''
   }
 
@@ -16,9 +16,14 @@ agent any
     }
     stage('Buildind'){
       steps{
-        script {
-          dockerImage = docker.build imagename
-        }
+        sh "docker buil -t $imagename:latest -t $imagename:$BUILD_NUMBER ."
+      }
+    }
+    stage('Deploy image'){
+      script {
+        docker.withRegistry( '', registryCredential ) {
+        dockerImage.push("$BUILD_NUMBER")
+        dockerImage.push('latest')
       }
     }
   }
