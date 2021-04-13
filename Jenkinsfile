@@ -14,5 +14,10 @@ agent any
         url: 'https://github.com/nsadriano/projeto-instituto.git'
       }
     }
+    stage('Buildind'){
+      steps{
+        sh "sudo docker build -t $imagename:latest -t $imagename:$BUILD_NUMBER ."
+      }
+    }
   }
 }
