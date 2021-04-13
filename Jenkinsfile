@@ -22,11 +22,10 @@ agent any
     stage('Deploy image'){
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
-          dockerImage.push("$BUILD_NUMBER")
-          dockerImage.push('latest')
+          docker.withRegistry( '', registryCredential ) 
           }
-          }
+        sh "docker push $imagename:latest"
+        sh "docker push $imagename:$BUILD_NUMBER"
         }
     }
   }
