@@ -16,9 +16,7 @@ agent any
     }
     stage('Buildind'){
       steps{
-        script {
-          dockerImage = docker.build imagename
-        }
+        sh "ls -la"
       }
     }
   }
