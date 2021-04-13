@@ -8,7 +8,9 @@ pipeline {
 agent any
   stages{
     stage('Git Clone'){
-      git([url: 'https://github.com/nsadriano/projeto-instituto.git', branch: 'main', credentialsId: 'registryCredential'])
+      git branch: 'main',
+      credentialsId: 'registryCredential',
+      url: 'https://github.com/nsadriano/projeto-instituto.git'
     }
   }
 }
