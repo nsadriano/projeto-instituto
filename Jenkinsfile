@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "nsadriano/hello-app"
-    registryCredential = 'dockerhub-token'
+    registryCredential = 'dockerhub-credentials'
     dockerImage = ''
   }
 
@@ -17,7 +17,7 @@ agent any
     stage('Buildind'){
       steps{
         script {
-          dockerImage = docker.build imagename:$BUILD_NUMBER
+          dockerImage = docker.build imagename:env.BUILD_NUMBER
         }
       }
     }
