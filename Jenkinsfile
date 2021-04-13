@@ -16,7 +16,7 @@ agent any
     }
     stage('Buildind'){
       steps{
-        sh "ls -la"
+        sh "docker ps"
       }
     }
   }
