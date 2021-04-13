@@ -23,7 +23,8 @@ agent any
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
-          sh "pwd"
+          sh "docker push $imagename:latest"
+          sh "docker push $imagename:$BUILD_NUMBER"
           }
           }
         }
