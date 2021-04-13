@@ -17,7 +17,7 @@ agent any
     stage('Buildind'){
       steps{
         script {
-          dockerImage = docker.build imagename:env.BUILD_NUMBER
+          dockerImage = docker.build imagename
         }
       }
     }
