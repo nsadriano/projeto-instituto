@@ -16,7 +16,9 @@ agent any
     }
     stage('Buildind'){
       steps{
-        sh "docker build -t $imagename:latest -t $imagename:$BUILD_NUMBER ."
+        script {
+          dockerImage = docker.build imagename
+        }
       }
     }
   }
