@@ -1,5 +1,5 @@
 *.cer
-!/terraform
-/terraform/*
-!/terraform/*.tf 
-!/terraform/*tfstate
+!terraform
+**/terraform/*
+!**/terraform/*.tf 
+!**/terraform/*tfstate
