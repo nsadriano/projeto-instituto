@@ -1,2 +1,3 @@
 [docker-ec2]
-ec2-18-208-176-107.compute-1.amazonaws.com ansible_user=ubuntu
+ec2-54-236-231-249.compute-1.amazonaws.com ansible_user=ubuntu
+#ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
