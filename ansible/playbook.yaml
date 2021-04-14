@@ -68,6 +68,9 @@
         name: jenkins
         groups: docker
         append: yes
+      notify: Reboot host and wait for it to restart
+
+    
 
     - name: Criando o Elasticsearch container
       docker_container:
@@ -91,6 +94,16 @@
         recreate: yes
         published_ports:
           - 5601:5601
+
+    - name: Verificar se o diretório logstash está presente
+      file:
+        path: "/home/ubuntu/{{ logstach_folder }}"
+        state: directory
+
+    - name: Entregar conteúdo html
+      copy:
+        src: logstash.conf
+        dest: "/home/ubuntu/{{ logstach_folder }}"
 
     - name: Criando o Logstash container
       docker_container:
