@@ -30,16 +30,9 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-          script{
-            def inspectExitCode = sh script: "docker container exec -it flask-app bash", returnStatus: true
-              if (inspectExitCode == 0) {
-                  sh "docker container stop flask-app"
-                  sh "docker container rm -f flask-app"
-                  sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
-              } else {
-                  sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
-              }
-          }        
+        sh "docker container stop flask-app 2> /dev/null"
+        sh "docker container rm -f flask-app 2> /dev/null"
+        sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"        
       }
     }
   }
