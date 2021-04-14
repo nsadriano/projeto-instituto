@@ -8,4 +8,4 @@ COPY src /src/
 
 EXPOSE 80
 
-ENTRYPOINT ["python", "/src/app.py", "&"]
+ENTRYPOINT ["python", "/src/app.py"]

@@ -31,7 +31,7 @@ agent any
     }
     stage('Subindo App Docker'){
       steps{
-        sh "docker run --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
+        sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
       }
     }
   }
