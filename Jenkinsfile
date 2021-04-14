@@ -35,6 +35,7 @@ agent any
               if (inspectExitCode == 0) {
                   sh "docker container stop flask-app"
                   sh "docker container rm -f flask-app"
+                  sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
               } else {
                   sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
               }
