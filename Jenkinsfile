@@ -33,9 +33,10 @@ agent any
           script{
             def inspectExitCode = sh script: "docker container ps", returnStatus: true
               if (inspectExitCode == 0) {
-                  sh "ls -l"
+                  sh "docker container stop flask-app"
+                  sh "docker container rm -f flask-app"
               } else {
-                  sh "pwd"
+                  sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
               }
           }        
       }
