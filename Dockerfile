@@ -2,7 +2,8 @@ FROM python:alpine
 
 LABEL maintainer="Adriano Nascimento"
 
-RUN pip install flask
+RUN pip install flask \
+&& pip install elastic-apm[flask]
 
 COPY src /src/
 
