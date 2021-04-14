@@ -30,11 +30,13 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-       def inspectExitCode = sh script: "docker container ps", returnStatus: true
-          if (inspectExitCode == 0) {
-              sh "ls -l"
-          } else {
-              sh "pwd"
+          script{
+            def inspectExitCode = sh script: "docker container ps", returnStatus: true
+              if (inspectExitCode == 0) {
+                  sh "ls -l"
+              } else {
+                  sh "pwd"
+              }
           }        
       }
     }
