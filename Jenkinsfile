@@ -26,8 +26,13 @@ agent any
           sh "docker push $imagename:latest"
           sh "docker push $imagename:$BUILD_NUMBER"
           }
-          }
         }
+      }
+    }
+    stage('Subindo App Docker'){
+      steps{
+        sh "docker run -name flask-app -p 80:5000 $imagename:$BUILD_NUMBER"
+      }
     }
   }
 }
