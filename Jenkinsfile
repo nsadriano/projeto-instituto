@@ -30,8 +30,8 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-        sh "docker container stop flask-app 2> /dev/null"
-        sh "docker container rm -f flask-app 2> /dev/null"
+        //sh "docker container stop flask-app 2> /dev/null"
+        //sh "docker container rm -f flask-app 2> /dev/null"
         sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"        
       }
     }
