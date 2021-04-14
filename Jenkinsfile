@@ -30,7 +30,7 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-        if (sh "docker ps") {
+        if (sh 'docker ps') {
                 sh "docker stop flask-app"
                 sh "docker rm -f flask-app"
             } else {
