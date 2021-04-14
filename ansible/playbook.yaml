@@ -3,6 +3,8 @@
   hosts: docker-ec2
   become: true
   gather_facts: no
+  vars:
+    logstach_folder: config-dir
 
   tasks:
     - name: Atualizando o sistema operacional
@@ -100,7 +102,7 @@
         path: "/home/ubuntu/{{ logstach_folder }}"
         state: directory
 
-    - name: Entregar conteúdo html
+    - name: Copiando arquivo de configuração do Logstash
       copy:
         src: logstash.conf
         dest: "/home/ubuntu/{{ logstach_folder }}"
@@ -116,4 +118,4 @@
         published_ports:
           - 9500:9500
         volumes:
-          - /home/ubuntu/logstash:/config-dir
+          - /home/ubuntu/logstash:/{{ logstach_folder }}"
