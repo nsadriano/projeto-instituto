@@ -4,7 +4,6 @@ pipeline {
     registryCredential = 'github-credentials'
     dockerImage = ''
   }
-
 agent any
   stages{
     stage('Git Clone'){
@@ -31,7 +30,11 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-        sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
+        if (sh 'docker ps --filter "name=flask-app"') {
+                echo 'I only execute on the master branch'
+            } else {
+                sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
+            }        
       }
     }
   }

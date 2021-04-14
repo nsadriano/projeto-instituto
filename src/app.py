@@ -7,7 +7,7 @@ def home() :
    return "<html>" + \
            "<head><title>Desafio Instituto Atlantico</title></head>" + \
            "<body>" + \
-               "<h1>BEm vinda Tereza!</h1>" + \
+               "<h1>Hello World!</h1>" + \
            "</body>" + \
            "</html>"
 
