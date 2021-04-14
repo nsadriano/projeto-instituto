@@ -32,7 +32,7 @@ agent any
       steps{
         sh "docker container stop flask-app 2> /dev/null"
         sh "docker container rm -f flask-app 2> /dev/null"
-        sh "docker run -d --name flask-app -p 80:80 --link apm-server:apm-server $imagename:$BUILD_NUMBER"        
+        sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"        
       }
     }
   }

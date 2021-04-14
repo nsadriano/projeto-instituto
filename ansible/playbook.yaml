@@ -132,13 +132,4 @@
         dest: "/home/ubuntu/{{ apm_folder }}"
 
     - name: Criando o APM Server container
-      docker_container:
-        name: apm-server
-        image: docker.elastic.co/apm/apm-server:7.12.0
-        state: started
-        env: output.elasticsearch.hosts=["elasticsearch:9200"]
-        user: apm-server
-        links: elasticsearch:elasticsearch
-        recreate: yes
-        volumes:
-          - /home/ubuntu/{{ apm_folder }}:/usr/share/apm-server/apm-server.yml"
+      command: docker run -d --name=apm-server --user=apm-server --volume="/home/ubuntu/apm-dir/apm-server.docker.yml:/usr/share/apm-server/apm-server.yml:ro" --link elasticsearch:elasticsearch docker.elastic.co/apm/apm-server:7.12.0 --strict.perms=false -e -E output.elasticsearch.hosts=["elasticsearch:9200"] -e -E apm-server.host=0.0.0.0:8200

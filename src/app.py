@@ -13,7 +13,7 @@ from elasticapm.contrib.flask import ElasticAPM
 app.config['ELASTIC_APM'] = {
   # Set required service name. Allowed characters:
   # a-z, A-Z, 0-9, -, _, and space
-  'SERVICE_NAME': '',
+  'SERVICE_NAME': 'Flask-APP',
 
   # Use if APM Server requires a token
   'SECRET_TOKEN': '',
