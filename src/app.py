@@ -19,7 +19,7 @@ app.config['ELASTIC_APM'] = {
   'SECRET_TOKEN': '',
 
   # Set custom APM Server URL (default: http://localhost:8200)
-  'SERVER_URL': 'http://10.0.1.33:8200'
+  'SERVER_URL': 'http://10.0.1.33:8200',
 }
 
 apm = ElasticAPM(app)
