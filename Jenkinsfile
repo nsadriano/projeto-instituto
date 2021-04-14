@@ -32,7 +32,7 @@ agent any
     stage('Subindo ELK Stack'){
       steps{
         sh "docker run -d --name elasticsearch -p 9200:9200 bashell/alpine-elasticsearch"
-        sh "docker run -d --name logstash -p 12201:12201 -l elasticsearch:elasticsearch ogstash:latest"
+        sh "docker run -d --name logstash -p 12201:12201 -l elasticsearch:elasticsearch logstash:latest"
         sh "docker run -d --name kibana -p 5601:5601 -e ELASTICSEARCH_URL=http://elasticsearch:9200 kibana"
       }
     }
