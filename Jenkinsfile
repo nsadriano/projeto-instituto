@@ -30,8 +30,9 @@ agent any
     }
     stage('Subindo App-flask'){
       steps{
-        if (sh 'docker ps --filter "name=flask-app"') {
-                echo 'I only execute on the master branch'
+        if (sh "docker ps") {
+                sh "docker stop flask-app"
+                sh "docker rm -f flask-app"
             } else {
                 sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"
             }        
