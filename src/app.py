@@ -12,7 +12,6 @@ LOGSTASH_PORT = 9500
 logstash_handler = AsynchronousLogstashHandler(
     LOGSTASH_HOST,
     LOGSTASH_PORT,
-    database_path=LOGSTASH_DB_PATH,
     transport=LOGSTASH_TRANSPORT,
 )
 
