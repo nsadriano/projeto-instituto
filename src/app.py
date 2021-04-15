@@ -1,26 +1,21 @@
 from flask import Flask
 import logging
-import logging.handlers
-import os
- 
-handler = logging.handlers.WatchedFileHandler(
-    os.environ.get("LOGFILE", "/var/log/yourapp.log"))
-formatter = logging.Formatter(logging.BASIC_FORMAT)
-handler.setFormatter(formatter)
-root = logging.getLogger()
-root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
-root.addHandler(handler)
- 
-try:
-    exit(main())
-except Exception:
-    logging.exception("Exception in main()")
-    exit(1)
+
+log_format = '%(asctime)s:%(levelname)s:%(filename)s:%(message)s'
+
+logging.basicConfig(filename='exemplo.log',
+                    filemode='w',
+                    level=logging.DEBUG,
+                    format=log_format)
+
+logger = logging.getLogger('root')
+
 
 app = Flask(__name__)
 
 @app.route("/")
 def home() :
+  logger.info("Codigo 200")
   return "<html>" + \
     "<head><title>Desafio Instituto Atlantico</title></head>" + \
     "<body>" + \
