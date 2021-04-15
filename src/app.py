@@ -1,8 +1,21 @@
 from flask import Flask
 import logging
-
-log = logging.getLogger("my-logger")
-log.info("Hello, world")
+import logging.handlers
+import os
+ 
+handler = logging.handlers.WatchedFileHandler(
+    os.environ.get("LOGFILE", "/var/log/yourapp.log"))
+formatter = logging.Formatter(logging.BASIC_FORMAT)
+handler.setFormatter(formatter)
+root = logging.getLogger()
+root.setLevel(os.environ.get("LOGLEVEL", "INFO"))
+root.addHandler(handler)
+ 
+try:
+    exit(main())
+except Exception:
+    logging.exception("Exception in main()")
+    exit(1)
 
 app = Flask(__name__)
 
