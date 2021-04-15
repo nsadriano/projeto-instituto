@@ -6,21 +6,19 @@ RUN pip install flask
 
 COPY src /src/
 
-# Kibana version
-ARG FILEBEAT_VERSION=5.0.0-alpha1-x86_64
-ENV FILEBEAT_VERSION ${FILEBEAT_VERSION}
-ARG FILEBEAT_DOWNLOAD_URL=https://download.elastic.co/beats/filebeat/filebeat-${FILEBEAT_VERSION}.tar.gz
-ENV FILEBEAT_DOWNLOAD_URL ${FILEBEAT_DOWNLOAD_URL}
+ENV FILEBEAT_VERSION=6.1.1
 
-# Install NodeJS and Kibana
-RUN apk add --update curl
-RUN curl -s ${FILEBEAT_DOWNLOAD_URL} | tar zx -C /tmp && \
-    mv /tmp/filebeat-${FILEBEAT_VERSION}/filebeat /bin/filebeat
-ADD config /etc/filebeat/
-RUN apk del curl && \
-    rm -rf /var/cache/apk/*
+RUN apk add --update-cache curl bash libc6-compat && \
+    rm -rf /var/cache/apk/* && \
+    curl https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz -o /filebeat.tar.gz && \
+    tar xzvf filebeat.tar.gz && \
+    rm filebeat.tar.gz && \
+    mv filebeat-${FILEBEAT_VERSION}-linux-x86_64 filebeat && \
+    cd filebeat && \
+    cp filebeat /usr/bin && \
+    rm -rf /filebeat/filebeat.yml
 
-RUN filebeat -e -c /src/filebeat.yml
+RUN filebeat -e -c /src/filebeat/filebeat.yml
 
 EXPOSE 80
 
