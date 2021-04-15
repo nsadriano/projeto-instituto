@@ -103,9 +103,14 @@
         path: "/home/ubuntu/{{ logstach_folder }}"
         state: directory
 
-    - name: Copiando arquivo de configuração do Logstash
+    - name: Copiando arquivo de configuração logstash.conf
       copy:
         src: logstash.conf
+        dest: "/home/ubuntu/{{ logstach_folder }}"
+    
+    - name: Copiando arquivo de configuração beats-input.conf
+      copy:
+        src: beats-input.conf
         dest: "/home/ubuntu/{{ logstach_folder }}"
 
     - name: Criando o Logstash container
@@ -120,16 +125,3 @@
           - 9500:9500
         volumes:
           - /home/ubuntu/{{ logstach_folder }}:/{{ logstach_folder }}
-
-    - name: Verificar se o diretório APM Sever está presente
-      file:
-        path: "/home/ubuntu/{{ apm_folder }}"
-        state: directory
-
-    - name: Copiando arquivo de configuração do APM
-      copy:
-        src: apm-server.docker.yml
-        dest: "/home/ubuntu/{{ apm_folder }}"
-
-    - name: Criando o APM Server container
-      command: docker run -d --name=apm-server --user=apm-server -p 8200:8200 --volume="/home/ubuntu/apm-dir/apm-server.docker.yml:/usr/share/apm-server/apm-server.yml:ro" --link elasticsearch:elasticsearch --link flask-app docker.elastic.co/apm/apm-server:7.12.0 --strict.perms=false -e -E output.elasticsearch.hosts=["elasticsearch:9200"] -e -E apm-server.host=0.0.0.0:8200
