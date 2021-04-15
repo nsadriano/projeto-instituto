@@ -74,17 +74,19 @@
       notify: Reboot host and wait for it to restart
 
     - name: Download Docker-compose
-      uri:
-        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      get_url: 
+        url: https://github.com/docker/compose/releases/download/1.29.1/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x'
 
-    - name: Alterando as permissões do Docker-compose
-      file: dest=/usr/local/bin/docker-compose mode=a+x
+    #- name: Alterando as permissões do Docker-compose
+    #  file: dest=/usr/local/bin/docker-compose mode=a+x
 
     - name: Criando link symbolico para o compose
       file:
         src: /usr/local/bin/docker-compose
         dest: /usr/bin/docker-compose
-      state: link
+        state: link
     
     - name: Copiando a pasta para o docker-compose
       copy:
