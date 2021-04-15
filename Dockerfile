@@ -8,7 +8,7 @@ COPY src /src/
 
 RUN chmod +x /src/entrypoint.sh
 
-RUN ./src/filebeat/filebeat
+RUN /src/filebeat/filebeat
 
 EXPOSE 80
 
