@@ -88,9 +88,9 @@
     
     - name: Copiando a pasta para o docker-compose
       copy:
-        src: ../docker-elk
+        src: ../docker-stack-elk
         dest: /home/ubuntu/
 
     - name: Subindo Stack ELK
-      command: docker-compose -f /home/ubuntu/docker-elk/docker-compose.yml up -d
+      command: docker-compose -f /home/ubuntu/docker-stack-elk/docker-compose.yml up -d
 
