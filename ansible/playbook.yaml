@@ -98,16 +98,16 @@
         published_ports:
           - 5601:5601
 
-    - name: Verificar se o diretório logstash está presente
-      file:
-        path: "/home/ubuntu/{{ logstach_folder }}"
-        state: directory
+#    - name: Verificar se o diretório logstash está presente
+#      file:
+#        path: "/home/ubuntu/{{ logstach_folder }}"
+#        state: directory
 
-    - name: Copiando arquivo de configuração logstash.conf
-      copy:
-        src: logstash.conf
-        dest: "/home/ubuntu/{{ logstach_folder }}"
-    
+#    - name: Copiando arquivo de configuração logstash.conf
+#      copy:
+#        src: logstash.conf
+#        dest: "/home/ubuntu/{{ logstach_folder }}"
+#    
     - name: Copiando arquivo de configuração beats-input.conf
       copy:
         src: beats-input.conf

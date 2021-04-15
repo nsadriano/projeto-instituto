@@ -8,7 +8,7 @@ app = Flask(__name__)
 LOGSTASH_HOST = "10.0.1.33"
 LOGSTASH_TRANSPORT = "logstash_async.transport.BeatsTransport"
 LOGSTASH_DB_PATH = "/home/app-data"
-LOGSTASH_PORT = 5400
+LOGSTASH_PORT = 9500
 
 logstash_handler = AsynchronousLogstashHandler(
     LOGSTASH_HOST,
