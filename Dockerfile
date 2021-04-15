@@ -6,9 +6,8 @@ RUN pip install flask
 
 COPY src /src/
 
-RUN chmod +x /src/entrypoint.sh
-
-RUN /src/filebeat/filebeat
+RUN cp /src/filebeat/filebeat /bin/filebeat \
+&& filebeat -e -c /src/filebeat/filebeat.yml
 
 EXPOSE 80
 
