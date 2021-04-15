@@ -1,32 +1,27 @@
 from flask import Flask
 
-from elasticapm.contrib.flask import ElasticAPM
-
-
+from logstash_async.handler import AsynchronousLogstashHandler
+from logstash_async.formatter import FlaskLogstashFormatter
 
 app = Flask(__name__)
-apm = ElasticAPM(app)
 
+LOGSTASH_HOST = "10.0.1.33"
+LOGSTASH_TRANSPORT = "logstash_async.transport.BeatsTransport"
+LOGSTASH_PORT = 9500
 
-# or configure to use ELASTIC_APM in your application's settings
-from elasticapm.contrib.flask import ElasticAPM
-app.config['ELASTIC_APM'] = {
-  # Set required service name. Allowed characters:
-  # a-z, A-Z, 0-9, -, _, and space
-  'SERVICE_NAME': 'Flask-APP',
+logstash_handler = AsynchronousLogstashHandler(
+    LOGSTASH_HOST,
+    LOGSTASH_PORT,
+    database_path=LOGSTASH_DB_PATH,
+    transport=LOGSTASH_TRANSPORT,
+)
 
-  # Use if APM Server requires a token
-  'SECRET_TOKEN': '',
-
-  # Set custom APM Server URL (default: http://localhost:8200)
-  'SERVER_URL': 'http://10.0.1.33:8200',
-}
-
-apm = ElasticAPM(app)
-
+logstash_handler.formatter = FlaskLogstashFormatter(metadata={"beat": "Flask-app"})
+app.logger.addHandler(logstash_handler)
 
 @app.route("/")
 def home() :
+   app.logger.info("Hello there")
    return "<html>" + \
            "<head><title>Desafio Instituto Atlantico</title></head>" + \
            "<body>" + \

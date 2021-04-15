@@ -119,7 +119,7 @@
         published_ports:
           - 9500:9500
         volumes:
-          - /home/ubuntu/{{ logstach_folder }}:/{{ logstach_folder }}"
+          - /home/ubuntu/{{ logstach_folder }}:/{{ logstach_folder }}
 
     - name: Verificar se o diretório APM Sever está presente
       file:

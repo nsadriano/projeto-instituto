@@ -3,7 +3,7 @@ FROM python:alpine
 LABEL maintainer="Adriano Nascimento"
 
 RUN pip install flask \
-&& pip install elastic-apm[flask]
+&& pip install python-logstash-async
 
 COPY src /src/
 
