@@ -1,4 +1,8 @@
 from flask import Flask
+import logging
+
+log = logging.getLogger("my-logger")
+log.info("Hello, world")
 
 app = Flask(__name__)
 
