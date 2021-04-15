@@ -1,28 +1,22 @@
 from flask import Flask
+from flask import jsonify
+from flask import request
+from flask_cors import CORS, cross_origin
+import socket
 
-from logstash_async.handler import AsynchronousLogstashHandler
-from logstash_async.formatter import FlaskLogstashFormatter
+TCP_IP = '10.0.1.33'
+TCP_PORT = 9500
+BUFFER_SIZE = 20
 
 app = Flask(__name__)
-
-LOGSTASH_HOST = "10.0.1.33"
-LOGSTASH_TRANSPORT = "logstash_async.transport.BeatsTransport"
-LOGSTASH_DB_PATH = "/home/app-data"
-LOGSTASH_PORT = 9500
-
-logstash_handler = AsynchronousLogstashHandler(
-    LOGSTASH_HOST,
-    LOGSTASH_PORT,
-    database_path=LOGSTASH_DB_PATH,
-    transport=LOGSTASH_TRANSPORT,
-)
-
-logstash_handler.formatter = FlaskLogstashFormatter(metadata={"beat": "Flask-app"})
-app.logger.addHandler(logstash_handler)
+CORS(app)
 
 @app.route("/")
 def home() :
-   app.logger.info("Hello there")
+   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((TCP_IP, TCP_PORT))
+    s.send(request.method + " " + request.url + " " + "200")
+    s.close()
    return "<html>" + \
            "<head><title>Desafio Instituto Atlantico</title></head>" + \
            "<body>" + \
