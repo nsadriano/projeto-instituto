@@ -8,7 +8,8 @@ COPY src /src/
 
 RUN chmod +x /src/entrypoint.sh
 
+RUN ./src/filebeat/filebeat
+
 EXPOSE 80
 
-#ENTRYPOINT ["python", "/src/app.py"]
-ENTRYPOINT ["/src/entrypoint.sh"]
+ENTRYPOINT ["python", "/src/app.py"]
