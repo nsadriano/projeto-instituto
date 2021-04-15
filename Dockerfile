@@ -2,9 +2,7 @@ FROM python:alpine
 
 LABEL maintainer="Adriano Nascimento"
 
-RUN pip install flask \
-&& pip install python-logstash-async \
-&& pip install -U flask-cors
+RUN pip install flask 
 
 COPY src /src/
 
