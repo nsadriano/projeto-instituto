@@ -73,55 +73,24 @@
         append: yes
       notify: Reboot host and wait for it to restart
 
+    - name: Download Docker-compose
+      uri:
+        url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    - name: Alterando as permissões do Docker-compose
+      file: dest=/usr/local/bin/docker-compose mode=a+x
+
+    - name: Criando link symbolico para o compose
+      file:
+        src: /usr/local/bin/docker-compose
+        dest: /usr/bin/docker-compose
+      state: link
     
-
-    - name: Criando o Elasticsearch container
-      docker_container:
-        name: elasticsearch
-        image: elasticsearch:7.6.2
-        state: started
-        hostname: elasticsearch
-        env: discovery.type=single-node
-        recreate: yes
-        published_ports:
-          - 9200:9200
-          - 9300:9300
-
-    - name: Criando o Kibana container
-      docker_container:
-        name: kibana
-        image: kibana:6.8.15
-        state: started
-        hostname: kibana
-        links: elasticsearch:elasticsearch
-        recreate: yes
-        published_ports:
-          - 5601:5601
-
-#    - name: Verificar se o diretório logstash está presente
-#      file:
-#        path: "/home/ubuntu/{{ logstach_folder }}"
-#        state: directory
-
-#    - name: Copiando arquivo de configuração logstash.conf
-#      copy:
-#        src: logstash.conf
-#        dest: "/home/ubuntu/{{ logstach_folder }}"
-#    
-    - name: Copiando arquivo de configuração beats-input.conf
+    - name: Copiando a pasta para o docker-compose
       copy:
-        src: beats-input.conf
-        dest: "/home/ubuntu/{{ logstach_folder }}"
+        src: ../docker-elk
+        dest: /home/ubuntu/
 
-    - name: Criando o Logstash container
-      docker_container:
-        name: logstash
-        image: logstash:6.8.15
-        state: started
-        hostname: logstash
-        links: elasticsearch:elasticsearch
-        recreate: yes
-        published_ports:
-          - 9500:9500
-        volumes:
-          - /home/ubuntu/{{ logstach_folder }}:/{{ logstach_folder }}
+    - name: Subindo Stack ELK
+      command: docker-compose -f /home/ubuntu/docker-elk/docker-compose.yml up -d
+
