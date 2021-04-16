@@ -35,5 +35,11 @@ agent any
         sh "docker run -d --name flask-app -p 80:80 $imagename:$BUILD_NUMBER"        
       }
     }
+    stage('Limpando as imagens'){
+      steps{
+        sh "docker rmi -f $imagename:latest"
+        sh "docker rmi -f $imagename:$BUILD_NUMBER"        
+      }
+    }
   }
 }
