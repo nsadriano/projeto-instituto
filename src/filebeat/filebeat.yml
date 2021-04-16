@@ -12,7 +12,8 @@
 
 # ============================== Filebeat inputs ===============================
 
-filebeat.inputs:
+#filebeat.inputs:
+filebeat.prospectors:
 
 # Each - is an input. Most options can be set at the input level, so
 # you can use different inputs for various configurations.
@@ -95,7 +96,8 @@ filebeat.inputs:
 
 filebeat.config.modules:
   # Glob pattern for configuration loading
-  path: ${path.config}/modules.d/*.yml
+  #path: ${path.config}/modules.d/*.yml
+  path: /filebeat/modules.d/*.yml
 
   # Set to true to enable config reloading
   reload.enabled: false
@@ -173,9 +175,9 @@ setup.kibana:
 # Configure what output to use when sending the data collected by the beat.
 
 # ---------------------------- Elasticsearch Output ----------------------------
-output.elasticsearch:
+#output.elasticsearch:
   # Array of hosts to connect to.
-  hosts: ["10.0.1.33:9200"]
+  #hosts: ["10.0.1.33:9200"]
 
   # Protocol - either `http` (default) or `https`.
   #protocol: "https"
@@ -186,9 +188,9 @@ output.elasticsearch:
   #password: "changeme"
 
 # ------------------------------ Logstash Output -------------------------------
-#output.logstash:
+output.logstash:
   # The Logstash hosts
-#  hosts: ["10.0.1.33:5044"]
+  hosts: ["10.0.1.33:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
