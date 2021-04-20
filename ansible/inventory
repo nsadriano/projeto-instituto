@@ -1,3 +1,8 @@
 [docker-ec2]
 ec2-54-242-61-4.compute-1.amazonaws.com ansible_user=ubuntu
-#ansible_ssh_extra_args='-o StrictHostKeyChecking=no'
+
+[insecuressh:children]
+docker-ec2
+
+[insecuressh:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
