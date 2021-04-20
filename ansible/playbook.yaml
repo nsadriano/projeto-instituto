@@ -71,7 +71,21 @@
         name: jenkins
         groups: docker
         append: yes
-      #notify: Reboot host and wait for it to restart
+      register: task_result
+
+    - name: Reinicia se a permissão for alterada
+      shell: "sleep 5 && reboot"
+      async: 1
+      poll: 0
+      when: task_result is changed
+
+    - name: Espere que a reinicialização seja concluída se houver uma mudança de permissão
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 300
+      when: task_result is changed
 
     - name: Download Docker-compose
       get_url: 
