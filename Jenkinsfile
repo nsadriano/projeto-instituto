@@ -32,7 +32,7 @@ agent any
       steps{
         //sh "docker container stop flask-app 2> /dev/null"
         //sh "docker container rm -f flask-app 2> /dev/null"
-        sh "docker run -d --name flask-app -p 80:80 --network=elk $imagename:$BUILD_NUMBER"        
+        sh "docker run -d --name flask-app -p 80:80 --network=docker-stack-elk_elk $imagename:$BUILD_NUMBER"        
       }
     }
     stage('Limpando as imagens'){

@@ -192,7 +192,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["logstash:5044"]
+  hosts: ["docker-stack-elk_logstash_1:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
