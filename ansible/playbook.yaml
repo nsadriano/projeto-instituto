@@ -71,7 +71,7 @@
         name: jenkins
         groups: docker
         append: yes
-      notify: Reboot host and wait for it to restart
+      #notify: Reboot host and wait for it to restart
 
     - name: Download Docker-compose
       get_url: 
@@ -95,4 +95,12 @@
 
     - name: Subindo Stack ELK
       command: docker-compose -f /home/ubuntu/docker-stack-elk/docker-compose.yml up -d
+
+    - name: Checando senha inicial do Jenkins
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: JenkinsPass
+
+    - name: Print senha inicial do Jenkins 
+      debug:
+        msg: "Senha inicial do Jenkins: {{ JenkinsPass.stdout }}"
 
