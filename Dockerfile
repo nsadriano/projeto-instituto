@@ -19,8 +19,9 @@ RUN apk add --update-cache curl bash libc6-compat && \
     rm -rf /filebeat/filebeat.yml && \
     touch /exemplo.log
 
-RUN nohup bash -c "filebeat -e -c /src/filebeat/filebeat.yml &" && sleep 4
+#RUN nohup bash -c "filebeat -e -c /src/filebeat/filebeat.yml &" && sleep 4
 
 EXPOSE 80
 
 ENTRYPOINT ["python", "/src/app.py"]
+CMD [ "filebeat", "-e", "-c", "/src/filebeat/filebeat.yml" ]
