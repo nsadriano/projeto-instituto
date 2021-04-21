@@ -18,7 +18,7 @@ RUN apk add --update-cache curl bash libc6-compat && \
     cp filebeat /usr/bin && \
     rm -rf /filebeat/filebeat.yml
 
-RUN filebeat -e -c /src/filebeat/filebeat.yml &
+RUN nohup bash -c "filebeat -e -c /src/filebeat/filebeat.yml &" && sleep 4
 
 EXPOSE 80
 
