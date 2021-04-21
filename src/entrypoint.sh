@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e 
+
 python /src/app.py &
 
-/src/filebeat/filebeat
+filebeat -e -c /src/filebeat/filebeat.yml

@@ -23,5 +23,5 @@ RUN apk add --update-cache curl bash libc6-compat && \
 
 EXPOSE 80
 
-ENTRYPOINT ["python", "/src/app.py"]
-CMD [ "filebeat", "-e", "-c", "/src/filebeat/filebeat.yml" ]
+#ENTRYPOINT ["python", "/src/app.py"]
+ENTRYPOINT ["sh", "/src/entrypoint.sh"]
