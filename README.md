@@ -22,9 +22,13 @@ Provisionamento do ambiente
 1. Realizar o fork do projeto no Github;
 2. Criar uma Key Pair na AWS, salvar no diretório do projeto e alterar no arquivo de variables.tf do Terraform o nome da variável “keyname”;
 3. Provisionando a infraestrutura com o Terraform;
-Executar a Playbook Ansible para configurar o ambiente e subir a Stack ELK;
-Alterar o arquivo de inventário informando o IP ou DNS público da instância. Ao final do provisionando da infra, o terraform informa o DNS público da EC2. 
-#ansible-playbook -i inventory playbook.yaml --private-key [sua_kay_pair_aws]
+ * cd terraform
+ * terraform init
+ * terraform plan
+ * terraform apply
+4. Executar a Playbook Ansible para configurar o ambiente e subir a Stack ELK;
+ * Alterar o arquivo de inventário informando o IP ou DNS público da instância. 
+ * #ansible-playbook -i inventory playbook.yaml --private-key [sua_kay_pair_aws]
 Acesso ao Kibana
 http://ip_ou_dns_publico:5601/
 Acesse o Jenkins para criar o Pipeline. Necessário acessar a instância via SSH para pegar a senha inicial do Jenkins que fica localizada em: /var/lib/jenkins/secrets/initialAdminPassword
