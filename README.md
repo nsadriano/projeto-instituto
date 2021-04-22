@@ -95,7 +95,15 @@ http://ip_ou_dns_publico:5601/
 * Acesso a aplicação
 http://ip_ou_dns_publico
 
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/app-hello-world.png?raw=true)
+
 * * Aplicação é executada na porta 80 HTTP
+
+* Monitoramento de acessos a aplicação
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/kibana-monitoring.png?raw=true)
+
+
 
 
 
