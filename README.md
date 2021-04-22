@@ -11,3 +11,5 @@ Escopo
 * Implantação de Pipeline para integração e deploy da aplicação em produção;
 * Implantação de um ambiente de monitoramento da aplicação.
 
+![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/projeto_challenge.jpeg?raw=true)
+
