@@ -1,5 +1,5 @@
 [docker-ec2]
-ec2-54-85-4-223.compute-1.amazonaws.com ansible_user=ubuntu
+ec2-52-54-85-180.compute-1.amazonaws.com ansible_user=ubuntu
 
 [insecuressh:children]
 docker-ec2
