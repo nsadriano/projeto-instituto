@@ -43,8 +43,33 @@ Provisionamento do ambiente
 
  * Criar credentials para que o pipeline possa realizar o push da imagem para o Docker Hub.
  * * Gerenciar Jenkins > Manage Credentials > jenkins > Global Credentials  > Add credentials
+
  ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-credentials.png?raw=true)
+
  * Instalar plugin Docker Pipeline
+ * * Gerenciar Jenkins > Gerenciar Plugins > Disponiveis 
+ * * Procurar por Docker Pipeline, selecionar e Install Without restart
+ 
+ * Criar Pipeline
+ * * Novo Job > Informar um nome para o seu Pipeline e selecionar Pipeline
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-create-job.png?raw=true)
+
+* * Em Build Triggers > Selecionar GitHub hook trigger for GITScm polling
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-build-trigger.png?raw=true)
+
+* * Em Pipeline:
+* * * Alterar Definition para: Pipeline script from SCM
+* * * SCM: Git
+* * * Repository: Adicionar seu repositório do Git
+* * * Branch Specifier: Adicionar a branch do Build
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-pipeline-config.png.png?raw=true)
+
+
+
+
  * GitHub hook trigger for GITScm polling
 Pipeline script from SCM
 Configurar um Webhook no Github para que o mesmo acione automaticamente a Pipeline Jenkins ao realizar um Push na Branch informada no Pipeline. 
