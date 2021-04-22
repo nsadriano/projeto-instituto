@@ -34,10 +34,13 @@ Provisionamento do ambiente
  * ansible-playbook -i inventory playbook.yaml --private-key [sua_kay_pair_aws]
 
 5. Acessando e configurando o Jenkins: 
- * Ao final do provisionamento da instância com o Ansible, é informado a senha inicial do Jenkins
+ * Ao final do provisionamento da instância com o Ansible, é informado a senha inicial do Jenkins.
  * http://ip_ou_dns_publico:8080
+
  ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-install-plugins.png?raw=true)
-  ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-create-user.png?raw=true)
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-create-user.png?raw=true)
+ 
  * Criar credentials para que o pipeline possa realizar o push da imagem para o Docker Hub.
  * Gerenciar Jenkins > Manage Credentials > jenkins > Global Credentials  > Add credentials
  ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-credentials.png?raw=true)
