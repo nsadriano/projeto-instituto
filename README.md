@@ -65,16 +65,17 @@ Provisionamento do ambiente
 * * * Repository: Adicionar seu repositório do Git
 * * * Branch Specifier: Adicionar a branch do Build
 
- ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-pipeline-config.png.png?raw=true)
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/jenkins-pipeline-config.png?raw=true)
 
 
+* Configurar um Webhook no Github
+* * Vá até seu repositório, clique em Settings > Webhooks > Add webhook.
 
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/github-webhook.png?raw=true)
 
- * GitHub hook trigger for GITScm polling
-Pipeline script from SCM
-Configurar um Webhook no Github para que o mesmo acione automaticamente a Pipeline Jenkins ao realizar um Push na Branch informada no Pipeline. 
-No Github vá até seu repositório, clique em Settings > Webhooks > Add webhook.
 http://ip_ou_dns_publico:8080/github-webhook/
+
+
 Testar o Pipeline executando “Construir agora” no Jenkins
 Acesso a aplicação
 http://ip_ou_dns_publico
