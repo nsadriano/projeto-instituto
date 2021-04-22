@@ -73,16 +73,34 @@ Provisionamento do ambiente
 
  ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/github-webhook.png?raw=true)
 
+* * * Importante que ao final do endereço seja /github-webhook/
 http://ip_ou_dns_publico:8080/github-webhook/
 
-
-Testar o Pipeline executando “Construir agora” no Jenkins
-Acesso a aplicação
-http://ip_ou_dns_publico
-Aplicação é executada na porta 80 HTTP
-
-
-Acesso ao Kibana
+* Acesso ao Kibana
 http://ip_ou_dns_publico:5601/
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/kibana-login.png?raw=true)
+
+* * * User: elastic
+* * * Pass: changeme
+
+* * Menu lateral > Analytics > Discover > Create index pattern
+
+* * Em Index pattern name: legstash-*
+
+ ![alt text](https://github.com/nsadriano/projeto-instituto/blob/main/images/kibana-index-pattern.png?raw=true)
+
+* * Em time field: @timestamp
+
+* Acesso a aplicação
+http://ip_ou_dns_publico
+
+* * Aplicação é executada na porta 80 HTTP
+
+
+
+
+
+
 
 
