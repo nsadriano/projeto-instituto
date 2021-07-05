@@ -1,7 +1,7 @@
 pipeline {
   environment {
     imagename = "nsadriano/hello-app"
-    registryCredential = 'github-credentials'
+    registryCredential = 'dockerthub-credentials'
     dockerImage = ''
   }
 agent any
